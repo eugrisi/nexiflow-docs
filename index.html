@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação Completa - Nexiflow Approvals</title>
+    <title>Documentação Didática - Nexiflow Approvals v2.1.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,118 +14,87 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #1e40af;
-            --primary-light: #3b82f6;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--gray-700);
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        /* HEADER */
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 2rem;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .header h1 {
+        header h1 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        .header-meta {
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
+        header p {
+            font-size: 1rem;
             opacity: 0.9;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
-        .header-meta span {
+        .meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .meta span {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
-        /* CONTAINER */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem 3rem 1rem;
-        }
-
-        /* TABS NAVIGATION */
-        .tabs-nav {
+        .tabs {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 8px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
-            justify-content: center;
-            background: white;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0;
         }
 
         .tab-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--gray-300);
-            background: white;
-            color: var(--gray-700);
-            border-radius: 0.5rem;
+            padding: 14px 20px;
+            border: none;
+            background: transparent;
             cursor: pointer;
-            font-weight: 600;
             font-size: 1rem;
+            font-weight: 500;
+            color: #6b7280;
             transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            font-family: 'Geist', sans-serif;
         }
 
         .tab-btn:hover {
-            border-color: var(--primary-light);
-            color: var(--primary);
+            color: #0f172a;
+            background: #f3f4f6;
         }
 
         .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+            color: #10b981;
+            border-bottom-color: #10b981;
         }
 
-        /* TAB CONTENT */
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease;
@@ -133,1718 +105,1448 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* SEARCH BAR */
-        .search-container {
-            margin-bottom: 2rem;
-            text-align: center;
+        .section {
+            margin-bottom: 40px;
         }
 
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--gray-300);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        .section h2 {
+            font-size: 1.8rem;
+            color: #0f172a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #10b981;
+            padding-bottom: 10px;
+            font-weight: 700;
         }
 
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        /* ACCORDION */
-        .accordion-item {
-            background: white;
-            margin-bottom: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        .accordion {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
             overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
         }
 
         .accordion-header {
+            background: #f9fafb;
+            padding: 16px 20px;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem;
-            background: var(--gray-50);
-            cursor: pointer;
-            user-select: none;
-            border-bottom: 2px solid var(--gray-200);
             transition: all 0.3s ease;
+            font-weight: 500;
+            user-select: none;
         }
 
         .accordion-header:hover {
-            background: var(--gray-100);
+            background: #f3f4f6;
         }
 
         .accordion-header.active {
-            background: var(--primary-light);
+            background: #10b981;
             color: white;
-            border-bottom-color: var(--primary);
         }
 
-        .accordion-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .accordion-icon {
+        .accordion-toggle {
+            display: inline-block;
             transition: transform 0.3s ease;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
 
-        .accordion-header.active .accordion-icon {
+        .accordion-header.active .accordion-toggle {
             transform: rotate(180deg);
         }
 
-        .accordion-body {
+        .accordion-content {
             display: none;
-            padding: 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            animation: slideDown 0.3s ease forwards;
+            padding: 20px;
+            background: #ffffff;
         }
 
-        .accordion-body.active {
+        .accordion-content.active {
             display: block;
-            max-height: none;
         }
 
-        @keyframes slideDown {
-            from {
-                max-height: 0;
-                opacity: 0;
-            }
-            to {
-                max-height: 2000px;
-                opacity: 1;
-            }
-        }
-
-        /* CARDS */
-        .card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .card.success { border-left-color: var(--success); }
-        .card.warning { border-left-color: var(--warning); }
-        .card.error { border-left-color: var(--error); }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
-
-        /* TABLES */
-        .table-wrapper {
-            overflow-x: auto;
-            margin: 1.5rem 0;
+        .content-text {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 15px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font-size: 0.95rem;
         }
 
-        thead {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        table thead {
+            background: #0f172a;
             color: white;
         }
 
-        th {
-            padding: 1rem;
+        table th, table td {
+            padding: 12px 15px;
             text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary);
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--gray-200);
+        table tr:hover {
+            background: #f9fafb;
         }
 
-        tbody tr:hover {
-            background: var(--gray-50);
-        }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* BADGES */
-        .badge {
-            display: inline-block;
-            padding: 0.35rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .badge-primary { background: rgba(30, 64, 175, 0.2); color: var(--primary); }
-        .badge-success { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-        .badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
-        .badge-error { background: rgba(239, 68, 68, 0.2); color: var(--error); }
-
-        /* SECTIONS */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin: 2rem 0 1rem 0;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .subsection-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin: 1.5rem 0 1rem 0;
-        }
-
-        .sub-subsection-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin: 1rem 0 0.5rem 0;
-        }
-
-        /* LISTS */
-        ul, ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* GRID */
-        .grid {
-            display: grid;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-
-        /* FLOWCHART */
-        .flowchart {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 2px dashed var(--primary-light);
-            margin: 1.5rem 0;
+        .code-block {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 15px;
+            border-radius: 6px;
             overflow-x: auto;
+            margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
-            line-height: 1.8;
-            color: var(--gray-700);
-            white-space: pre-wrap;
-            word-break: break-all;
+            line-height: 1.5;
         }
 
-        /* CODE BLOCK */
-        .code-block {
-            background: var(--gray-900);
-            color: #e0e0e0;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            overflow-x: auto;
-            margin: 1.5rem 0;
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #0c4a6e;
+        }
+
+        .flow-diagram {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             line-height: 1.6;
+            overflow-x: auto;
         }
 
-        .code-block code {
-            color: inherit;
+        .feedback-section {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
         }
 
-        /* CALLOUTS */
-        .callout {
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid;
-            background-color: rgba(0, 0, 0, 0.03);
-        }
-
-        .callout-info {
-            border-left-color: var(--primary-light);
-            background-color: rgba(59, 130, 246, 0.05);
-        }
-
-        .callout-success {
-            border-left-color: var(--success);
-            background-color: rgba(16, 185, 129, 0.05);
-        }
-
-        .callout-warning {
-            border-left-color: var(--warning);
-            background-color: rgba(245, 158, 11, 0.05);
-        }
-
-        .callout-error {
-            border-left-color: var(--error);
-            background-color: rgba(239, 68, 68, 0.05);
-        }
-
-        .callout-title {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* FEEDBACK SECTION */
-        .feedback-box {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 2px solid var(--primary-light);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .feedback-box-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .feedback-box-content {
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .feedback-box-content.active {
+        .feedback-section label {
             display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #0f172a;
         }
 
-        .feedback-form {
-            margin-top: 1rem;
-        }
-
-        .feedback-form textarea {
+        .feedback-section textarea {
             width: 100%;
-            min-height: 100px;
-            padding: 0.75rem;
-            border: 2px solid var(--gray-300);
-            border-radius: 0.5rem;
-            font-family: inherit;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-family: 'Geist', sans-serif;
             font-size: 0.95rem;
             resize: vertical;
-            margin-bottom: 1rem;
+            min-height: 80px;
         }
 
-        .feedback-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .feedback-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .feedback-toggle {
-            background: white;
-            border: 2px solid var(--primary-light);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .feedback-toggle:hover {
-            background: var(--primary-light);
-            color: white;
-        }
-
-        /* FLOATING FEEDBACK BUTTON */
-        .floating-feedback {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        .feedback-section button {
+            background: #10b981;
             color: white;
             border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 999px;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 700;
-            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: background 0.3s ease;
         }
 
-        .floating-feedback:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(30, 64, 175, 0.6);
+        .feedback-section button:hover {
+            background: #059669;
         }
 
-        .floating-feedback span {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 0.25rem 0.5rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
+        .list-styled {
+            margin: 15px 0;
+            padding-left: 25px;
         }
 
-        /* FEEDBACK MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
+        .list-styled li {
+            margin-bottom: 10px;
+            line-height: 1.7;
         }
 
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-header {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray-500);
-        }
-
-        .modal-close:hover {
-            color: var(--gray-900);
-        }
-
-        /* CHANGELOG */
-        .changelog-item {
-            padding: 1rem;
-            border-left: 4px solid var(--primary-light);
-            margin-bottom: 1rem;
-            background: var(--gray-50);
-            border-radius: 0.5rem;
-        }
-
-        .changelog-date {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .changelog-version {
-            font-weight: 600;
-            color: var(--gray-800);
-            margin-bottom: 0.5rem;
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray-500);
-            margin-top: 3rem;
-            border-top: 2px solid var(--gray-200);
-        }
-
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-light);
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--gray-300);
-            color: var(--gray-900);
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-400);
-        }
-
-        /* STATUS BADGE */
-        .status-open {
-            background: rgba(59, 130, 246, 0.2);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-in-progress {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--warning);
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-resolved {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* HIGHLIGHT */
         .highlight {
-            background: rgba(245, 158, 11, 0.2);
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.3rem;
-            color: var(--warning);
-            font-weight: 600;
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 0.95rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 60px;
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.75rem;
+            header h1 {
+                font-size: 1.8rem;
             }
 
-            .floating-feedback {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 0.75rem 1rem;
+            .tabs {
+                gap: 4px;
+            }
+
+            .tab-btn {
+                padding: 12px 14px;
                 font-size: 0.9rem;
             }
 
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
+            .section h2 {
+                font-size: 1.4rem;
             }
 
-            .header-meta {
-                flex-direction: column;
-                gap: 0.5rem;
+            .section h3 {
+                font-size: 1.1rem;
             }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            table th, table td {
+                padding: 10px 8px;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .card h4 {
+            color: #10b981;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header class="header">
-    <h1>📚 Documentação Completa - Nexiflow Approvals</h1>
-    <p>Guia completo do sistema de aprovações e fluxos de projetos imobiliários</p>
-    <div class="header-meta">
-        <span>🔄 Última atualização: <strong id="updateTime">17/03/2026 às 15:50</strong></span>
-        <span>📊 Versão: <strong>2.1.0</strong></span>
-        <span>📝 Total de feedbacks: <strong id="feedbackCount">0</strong></span>
-    </div>
-</header>
-
-<!-- FLOATING FEEDBACK BUTTON -->
-<button class="floating-feedback" onclick="openFeedbackModal()">
-    ⚠️ Reportar Erro
-    <span id="badge-count">0</span>
-</button>
-
-<!-- FEEDBACK MODAL -->
-<div id="feedbackModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Reportar Problema</span>
-            <button class="modal-close" onclick="closeFeedbackModal()">✕</button>
-        </div>
-        <form onsubmit="submitFeedback(event)">
-            <p style="margin-bottom: 1rem; color: var(--gray-700);">
-                Encontrou um erro ou algo que precisa melhorar? Conte-nos!
-            </p>
-            <textarea
-                id="feedbackText"
-                placeholder="Descreva o problema ou sugestão..."
-                required
-            ></textarea>
-            <p style="font-size: 0.9rem; color: var(--gray-500); margin-bottom: 1rem;">
-                Email para resposta: seu-email@neximob.com.br
-            </p>
-            <div style="display: flex; gap: 1rem;">
-                <button type="submit" class="btn btn-primary">Enviar Feedback</button>
-                <button type="button" class="btn btn-secondary" onclick="closeFeedbackModal()">Cancelar</button>
+    <div class="container">
+        <header>
+            <h1>📚 Documentação Didática Completa</h1>
+            <p>Nexiflow Approvals - Sistema de Aprovação de Projetos Imobiliários</p>
+            <div class="meta">
+                <span>📌 <strong>Versão:</strong> v2.1.0</span>
+                <span>📅 <strong>Atualizado:</strong> 17/03/2026 15:50</span>
+                <span>🎯 <strong>Todos os públicos</strong></span>
             </div>
-        </form>
-    </div>
-</div>
+        </header>
 
-<!-- CONTAINER -->
-<div class="container">
-    <!-- TABS NAVIGATION -->
-    <div class="tabs-nav">
-        <button class="tab-btn active" onclick="switchTab('cliente')">👤 Cliente</button>
-        <button class="tab-btn" onclick="switchTab('usuario')">👨‍💻 Usuário</button>
-        <button class="tab-btn" onclick="switchTab('tecnica')">⚙️ Técnica</button>
-        <button class="tab-btn" onclick="switchTab('formularios')">📋 Formulários</button>
-        <button class="tab-btn" onclick="switchTab('faq')">❓ FAQ</button>
-        <button class="tab-btn" onclick="switchTab('feedback')">💬 Feedbacks</button>
-        <button class="tab-btn" onclick="switchTab('changelog')">📜 Changelog</button>
-    </div>
-
-    <!-- TAB: CLIENTE -->
-    <div id="cliente" class="tab-content active">
-        <h2 class="section-title">📖 Guia do Cliente</h2>
-
-        <div class="card success">
-            <div class="card-title">✅ Como começar</div>
-            <p>Bem-vindo ao Nexiflow Approvals! Este guia explica como usar o sistema passo a passo.</p>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'inicio')">🏠 Início</button>
+            <button class="tab-btn" onclick="switchTab(event, 'cliente')">👨‍💼 Cliente</button>
+            <button class="tab-btn" onclick="switchTab(event, 'usuario')">👤 Usuário</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tecnica')">👨‍💻 Técnica</button>
+            <button class="tab-btn" onclick="switchTab(event, 'formularios')">📋 Formulários</button>
+            <button class="tab-btn" onclick="switchTab(event, 'faq')">❓ FAQ</button>
+            <button class="tab-btn" onclick="switchTab(event, 'changelog')">📝 Changelog</button>
         </div>
 
-        <h3 class="subsection-title">1️⃣ Primeira Etapa: Preenchimento do Formulário</h3>
-        <div class="accordion-item">
-            <div class="accordion-header active" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📝</span>
-                    Informações Básicas
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body active">
-                <p>Na primeira fase, você precisará preencher:</p>
-                <ul>
-                    <li><strong>Tipo de Entrada:</strong> Lançamento, Remanescente, Área Bruta ou Incorporador/Terreno</li>
-                    <li><strong>Tipo de Estudo:</strong> Comercial, Ambiental, Técnico ou Outro</li>
-                    <li><strong>Localização:</strong> Estado e Cidade do projeto</li>
-                    <li><strong>Dados Pessoais:</strong> Nome, Email e Telefone</li>
-                    <li><strong>Checklist:</strong> Confirme a disponibilidade de documentos</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">2️⃣ Segunda Etapa: Análise do Revisor</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>🔍</span>
-                    O que acontece após submissão
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Após enviar o formulário, um revisor analisará seu projeto:</p>
-                <ul>
-                    <li>Um <strong>número de protocolo</strong> será gerado (ex: NXM-2026-AB12)</li>
-                    <li>Um email de confirmação será enviado</li>
-                    <li>O revisor avaliará seus documentos em até 5 dias úteis</li>
-                    <li>Você pode acompanhar o status em "Meu Protocolo"</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">3️⃣ Terceira Etapa: Formulário Complementar (quando necessário)</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📋</span>
-                    Dados Adicionais
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>Se seu projeto for aprovado</strong>, você receberá um email com um link para preencher dados complementares:</p>
-                <ul>
-                    <li>Detalhes técnicos do projeto</li>
-                    <li>Informações financeiras</li>
-                    <li>Upload de documentos adicionais</li>
-                    <li>Cronograma de execução</li>
-                </ul>
-                <p style="margin-top: 1rem;"><strong>⚠️ Importante:</strong> Este formulário só aparece se seu projeto foi aprovado na fase 1.</p>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">4️⃣ Quarta Etapa: Proposta do Projeto</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📊</span>
-                    Visualizar a Proposta
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Após completar o formulário complementar, você poderá:</p>
-                <ul>
-                    <li>Acessar a proposta via link único enviado por email</li>
-                    <li>Visualizar análise técnica do seu projeto</li>
-                    <li>Ver recomendações dos revisores</li>
-                    <li>Download de documentos em PDF</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- FEEDBACK BOX -->
-        <div class="feedback-box">
-            <div class="feedback-box-title" onclick="toggleFeedback(this)">
-                📝 Observações & Correções
-                <span style="margin-left: auto;">▼</span>
-            </div>
-            <div class="feedback-box-content">
-                <p style="margin-bottom: 1rem; color: var(--gray-600);">Algo está faltando ou errado nesta seção? Conte-nos!</p>
-                <div class="feedback-form">
-                    <textarea placeholder="Sua observação aqui..." class="section-feedback"></textarea>
-                    <button class="btn btn-primary" onclick="sendSectionFeedback('cliente')">Enviar Feedback</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: USUARIO -->
-    <div id="usuario" class="tab-content">
-        <h2 class="section-title">👨‍💻 Guia do Usuário (Reviewer/Admin)</h2>
-
-        <div class="card warning">
-            <div class="card-title">⚠️ Acesso Restrito</div>
-            <p>Esta seção é para revisores e administradores do sistema. Requer autenticação.</p>
-        </div>
-
-        <h3 class="subsection-title">🔐 Autenticação</h3>
-        <div class="accordion-item">
-            <div class="accordion-header active" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>🔑</span>
-                    Login e Permissões
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body active">
-                <p>Para acessar o painel de revisão:</p>
-                <ul>
-                    <li>Acesse <strong>/admin/login</strong></li>
-                    <li>Use suas credenciais (email e senha)</li>
-                    <li>Perfis disponíveis: Reviewer, Admin</li>
-                    <li>Cada perfil tem permissões diferentes</li>
-                </ul>
-                <div class="callout callout-info">
-                    <div class="callout-title">💡 Dica</div>
-                    <p>Se esqueceu a senha, clique em "Recuperar Senha" na página de login.</p>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">📊 Dashboard do Revisor</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📈</span>
-                    Visualização de Projetos
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>No dashboard, você verá:</p>
-                <ul>
-                    <li><strong>Lista de Projetos:</strong> Todos os projetos submetidos</li>
-                    <li><strong>Status:</strong> Pendente, Em Análise, Aprovado, Rejeitado, Aguardando Correção</li>
-                    <li><strong>Filtros:</strong> Por data, tipo de entrada, status, etc.</li>
-                    <li><strong>Busca:</strong> Procure por protocolo ou nome do cliente</li>
-                    <li><strong>Score Automático:</strong> Avaliação numérica do projeto</li>
-                </ul>
-                <div class="callout callout-success">
-                    <div class="callout-title">✅ Score Automático</div>
-                    <p>O sistema calcula automaticamente um score de 0-100 baseado em dados IBGE (população, PIB, etc.). Este é um indicador da viabilidade econômica do projeto.</p>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">✍️ Ações do Revisor</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>🎯</span>
-                    Aprovar, Rejeitar ou Solicitar Revisão
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>Para cada projeto, você pode:</strong></p>
-                <ul>
-                    <li><strong>Aprovar:</strong> Projeto passa para próxima fase. Cliente recebe link para formulário complementar.</li>
-                    <li><strong>Rejeitar:</strong> Projeto é marcado como rejeitado. Cliente recebe notificação com motivo.</li>
-                    <li><strong>Solicitar Revisão:</strong> Projeto volta para o cliente com observações. Cliente pode reenviar.</li>
-                    <li><strong>Deixar Comentários:</strong> Adicione observações em campos específicos do formulário.</li>
-                </ul>
-                <div class="callout callout-warning">
-                    <div class="callout-title">⚠️ Importante</div>
-                    <p>Toda ação fica registrada no sistema com data, hora e quem realizou. Este histórico é visível para auditoria.</p>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">📧 Notificações Automáticas</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📨</span>
-                    Emails para Clientes
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>O sistema envia emails automaticamente:</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Evento</th>
-                            <th>Quando</th>
-                            <th>Conteúdo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Confirmação de Submissão</strong></td>
-                            <td>Imediatamente após envio</td>
-                            <td>Protocolo, obrigado pela submissão</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Aprovação</strong></td>
-                            <td>Quando revisor aprova</td>
-                            <td>Link para formulário complementar + access_token</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Rejeição</strong></td>
-                            <td>Quando revisor rejeita</td>
-                            <td>Motivo da rejeição</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Solicitação de Revisão</strong></td>
-                            <td>Quando solicita correções</td>
-                            <td>Observações + link para reenvio</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Proposta Enviada</strong></td>
-                            <td>Quando proposta fica pronta</td>
-                            <td>Link para visualizar proposta</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- FEEDBACK BOX -->
-        <div class="feedback-box">
-            <div class="feedback-box-title" onclick="toggleFeedback(this)">
-                📝 Observações & Correções
-                <span style="margin-left: auto;">▼</span>
-            </div>
-            <div class="feedback-box-content">
-                <p style="margin-bottom: 1rem; color: var(--gray-600);">Algo está faltando ou errado nesta seção? Conte-nos!</p>
-                <div class="feedback-form">
-                    <textarea placeholder="Sua observação aqui..." class="section-feedback"></textarea>
-                    <button class="btn btn-primary" onclick="sendSectionFeedback('usuario')">Enviar Feedback</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: TECNICA -->
-    <div id="tecnica" class="tab-content">
-        <h2 class="section-title">⚙️ Documentação Técnica</h2>
-
-        <div class="card error">
-            <div class="card-title">⚠️ Para Desenvolvedores</div>
-            <p>Conteúdo técnico sobre arquitetura, APIs, banco de dados e integração.</p>
-        </div>
-
-        <h3 class="subsection-title">🏗️ Arquitetura do Sistema</h3>
-        <div class="accordion-item">
-            <div class="accordion-header active" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>🔧</span>
-                    Stack Tecnológico
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body active">
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Camada</th>
-                                <th>Tecnologia</th>
-                                <th>Versão</th>
-                                <th>Descrição</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Frontend</strong></td>
-                                <td>React + Vite</td>
-                                <td>18.x / 5.x</td>
-                                <td>UI responsiva com TypeScript</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Backend</strong></td>
-                                <td>Express.js</td>
-                                <td>4.x</td>
-                                <td>API REST com middleware de auth</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Banco de Dados</strong></td>
-                                <td>PostgreSQL (Neon)</td>
-                                <td>15.x</td>
-                                <td>Dados com JSONB para flexibilidade</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Autenticação</strong></td>
-                                <td>JWT</td>
-                                <td>-</td>
-                                <td>Tokens com localStorage</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integração de Emails</strong></td>
-                                <td>N8N Webhooks</td>
-                                <td>-</td>
-                                <td>Trigger eventos do sistema</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integração de Dados</strong></td>
-                                <td>IBGE API</td>
-                                <td>v1</td>
-                                <td>Dados socioeconômicos de cidades</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">🔌 APIs Disponíveis</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>🚀</span>
-                    Endpoints Principais
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>Base URL:</strong> <code>http://localhost:3001/api</code></p>
-
-                <h4 style="margin-top: 1.5rem; font-weight: 600;">Projetos</h4>
-                <div class="code-block"><code>POST   /projects              - Criar novo projeto
-GET    /projects              - Listar todos projetos
-GET    /projects/:id          - Obter detalhes do projeto
-PATCH  /projects/:id          - Atualizar projeto
-GET    /projects/:id?reviewer=true - Obter com score (apenas reviewers)
-GET    /projects/protocolo/:no - Buscar por número de protocolo
-GET    /projects/token/:token - Buscar por access_token (públic)</code></div>
-
-                <h4 style="margin-top: 1.5rem; font-weight: 600;">Reviewer Actions</h4>
-                <div class="code-block"><code>POST   /projects/:id/approve    - Aprovar projeto
-POST   /projects/:id/reject     - Rejeitar projeto
-POST   /projects/:id/request-revision - Solicitar revisão
-POST   /projects/:id/comments   - Adicionar comentários
-GET    /projects/:id/review-actions - Ver histórico de ações</code></div>
-
-                <h4 style="margin-top: 1.5rem; font-weight: 600;">Proposta (Fase 4)</h4>
-                <div class="code-block"><code>POST   /projects/:id/market-study - Salvar estudo de mercado
-POST   /projects/:id/send-proposal  - Enviar proposta
-GET    /projects/:id/proposta?token=... - Visualizar proposta (público)</code></div>
-
-                <h4 style="margin-top: 1.5rem; font-weight: 600;">Autenticação</h4>
-                <div class="code-block"><code>POST   /auth/login       - Fazer login
-POST   /auth/logout      - Fazer logout
-POST   /auth/refresh     - Renovar token JWT
-GET    /auth/me          - Obter dados do usuário autenticado</code></div>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">🗄️ Estrutura do Banco de Dados</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📋</span>
-                    Tabelas Principais
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <h4 style="margin-bottom: 1rem;">Tabela: <code>projects</code></h4>
-                <p style="margin-bottom: 0.5rem;"><strong>Colunas principais:</strong></p>
-                <ul>
-                    <li><code>id (UUID)</code> - ID único do projeto</li>
-                    <li><code>user_name (varchar)</code> - Nome do cliente</li>
-                    <li><code>user_email (varchar)</code> - Email do cliente</li>
-                    <li><code>user_phone (varchar)</code> - Telefone do cliente</li>
-                    <li><code>protocol_number (varchar, UNIQUE)</code> - Número gerado (NXM-YYYY-XXXXX)</li>
-                    <li><code>status (enum)</code> - pendente_analise, fase_complementar, rejeitado, aguardando_proposta, proposta_enviada, etc</li>
-                    <li><code>current_phase (int)</code> - 1, 2, 3, 4 (fases do fluxo)</li>
-                    <li><code>phase1_answers (JSONB)</code> - Respostas do formulário inicial</li>
-                    <li><code>phase3_answers (JSONB)</code> - Respostas do formulário complementar</li>
-                    <li><code>internal_score (JSONB)</code> - Score automático (0-100)</li>
-                    <li><code>access_token (UUID)</code> - Token para acesso Phase 3</li>
-                    <li><code>revision_requested (JSONB)</code> - Observações de revisão</li>
-                    <li><code>market_study (JSONB)</code> - Estudo de mercado</li>
-                    <li><code>proposal (JSONB)</code> - Conteúdo da proposta</li>
-                    <li><code>proposal_token (UUID)</code> - Token para visualizar proposta</li>
-                    <li><code>created_at, updated_at (timestamp)</code> - Datas de criação e atualização</li>
-                    <li><code>deleted_at (timestamp)</code> - Para soft delete</li>
-                </ul>
-
-                <h4 style="margin-bottom: 1rem; margin-top: 1.5rem;">Tabela: <code>review_actions</code></h4>
-                <p style="margin-bottom: 0.5rem;"><strong>Registra cada ação do revisor:</strong></p>
-                <ul>
-                    <li><code>id (UUID)</code> - ID único da ação</li>
-                    <li><code>project_id (UUID)</code> - FK para projects</li>
-                    <li><code>reviewer_id (UUID)</code> - FK para users (revisor que agiu)</li>
-                    <li><code>action (enum)</code> - approved, rejected, revision_requested</li>
-                    <li><code>reason (text)</code> - Motivo/observação</li>
-                    <li><code>created_at (timestamp)</code> - Quando ocorreu</li>
-                </ul>
-
-                <h4 style="margin-bottom: 1rem; margin-top: 1.5rem;">Tabela: <code>review_comments</code></h4>
-                <p style="margin-bottom: 0.5rem;"><strong>Comentários em campos específicos:</strong></p>
-                <ul>
-                    <li><code>id (UUID)</code> - ID único do comentário</li>
-                    <li><code>project_id (UUID)</code> - FK para projects</li>
-                    <li><code>field_name (varchar)</code> - Qual campo recebeu comentário</li>
-                    <li><code>comment (text)</code> - Texto do comentário</li>
-                    <li><code>reviewer_id (UUID)</code> - Quem comentou</li>
-                    <li><code>created_at (timestamp)</code> - Quando comentou</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">🔒 Score Automático</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>📊</span>
-                    Algoritmo de Pontuação
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>O score é calculado automaticamente via IBGE API:</strong></p>
-                <ul>
-                    <li><strong>Dados utilizados:</strong> População da cidade, PIB per capita, IDH</li>
-                    <li><strong>Range:</strong> 0 a 100</li>
-                    <li><strong>Cache:</strong> Resultados cachados por 24h em <code>ibge_cache</code> table</li>
-                    <li><strong>Fallback:</strong> Se API falhar, permite preenchimento manual</li>
-                    <li><strong>Visibilidade:</strong> Só aparece para reviewers (<code>?reviewer=true</code>)</li>
-                </ul>
-                <div class="callout callout-warning">
-                    <div class="callout-title">⚠️ Segurança</div>
-                    <p>O score <strong>NUNCA</strong> é enviado para clientes. É calculado server-side e apenas retornado a revisores autenticados.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FEEDBACK BOX -->
-        <div class="feedback-box">
-            <div class="feedback-box-title" onclick="toggleFeedback(this)">
-                📝 Observações & Correções
-                <span style="margin-left: auto;">▼</span>
-            </div>
-            <div class="feedback-box-content">
-                <p style="margin-bottom: 1rem; color: var(--gray-600);">Algo está faltando ou errado nesta seção? Conte-nos!</p>
-                <div class="feedback-form">
-                    <textarea placeholder="Sua observação aqui..." class="section-feedback"></textarea>
-                    <button class="btn btn-primary" onclick="sendSectionFeedback('tecnica')">Enviar Feedback</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: FORMULARIOS -->
-    <div id="formularios" class="tab-content">
-        <h2 class="section-title">📋 Guia dos Formulários</h2>
-
-        <div class="card success">
-            <div class="card-title">✅ Campos e Validações</div>
-            <p>Descrição detalhada de todos os campos dos formulários, como preenchê-los e validações.</p>
-        </div>
-
-        <h3 class="subsection-title">Phase 1: Formulário Inicial</h3>
-        <div class="accordion-item">
-            <div class="accordion-header active" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>1️⃣</span>
-                    Dados Pessoais e do Projeto
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body active">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Campo</th>
-                            <th>Tipo</th>
-                            <th>Validação</th>
-                            <th>Exemplo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Nome Completo</strong></td>
-                            <td>Texto</td>
-                            <td>Obrigatório, mín. 3 caracteres</td>
-                            <td>João Silva</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Email</strong></td>
-                            <td>Email</td>
-                            <td>Obrigatório, válido</td>
-                            <td>joao@example.com</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Telefone</strong></td>
-                            <td>Telefone</td>
-                            <td>Obrigatório, formato válido</td>
-                            <td>(11) 99999-9999</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Estado</strong></td>
-                            <td>Select</td>
-                            <td>Obrigatório</td>
-                            <td>São Paulo</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cidade</strong></td>
-                            <td>Select/Autocomplete</td>
-                            <td>Obrigatório, deve existir no IBGE</td>
-                            <td>São Paulo</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Tipo de Entrada</strong></td>
-                            <td>Select</td>
-                            <td>Obrigatório</td>
-                            <td>Lançamento</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Tipo de Estudo</strong></td>
-                            <td>Multiselect</td>
-                            <td>Obrigatório, pelo menos 1</td>
-                            <td>Comercial, Técnico</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">Phase 3: Formulário Complementar (após aprovação)</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>3️⃣</span>
-                    Dados Técnicos e Financeiros
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>Este formulário só apareça se projeto foi aprovado na Fase 1.</strong></p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Campo</th>
-                            <th>Tipo</th>
-                            <th>Descrição</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Área Total do Terreno</strong></td>
-                            <td>Número</td>
-                            <td>Em metros quadrados (m²)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Área Construída</strong></td>
-                            <td>Número</td>
-                            <td>Em metros quadrados (m²)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Número de Unidades</strong></td>
-                            <td>Número</td>
-                            <td>Total de unidades no projeto</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Valor Total do Investimento</strong></td>
-                            <td>Moeda</td>
-                            <td>Em BRL</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Data Prevista de Início</strong></td>
-                            <td>Data</td>
-                            <td>Format: DD/MM/YYYY</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Data Prevista de Término</strong></td>
-                            <td>Data</td>
-                            <td>Format: DD/MM/YYYY</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Documentos (Upload)</strong></td>
-                            <td>Arquivo</td>
-                            <td>PDF, DOC, imagens. Máx. 50MB</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <h3 class="subsection-title">Checklist Inicial</h3>
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>✅</span>
-                    Documentação Necessária
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Na Fase 1, você confirma a disponibilidade de documentos (sim/não):</p>
-                <ul>
-                    <li>☐ RG / CPF do proprietário</li>
-                    <li>☐ Comprovante de endereço</li>
-                    <li>☐ Matrícula do imóvel</li>
-                    <li>☐ Planta arquitetônica</li>
-                    <li>☐ Projeto técnico</li>
-                    <li>☐ Levantamento topográfico</li>
-                    <li>☐ Parecer jurídico</li>
-                    <li>☐ Licença ambiental</li>
-                </ul>
-                <div class="callout callout-info">
-                    <div class="callout-title">💡 Importante</div>
-                    <p>Marcar "sim" neste checklist não significa que você precisa enviar os arquivos agora. Você apenas confirma que possui. Os arquivos podem ser enviados na Fase 3.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FEEDBACK BOX -->
-        <div class="feedback-box">
-            <div class="feedback-box-title" onclick="toggleFeedback(this)">
-                📝 Observações & Correções
-                <span style="margin-left: auto;">▼</span>
-            </div>
-            <div class="feedback-box-content">
-                <p style="margin-bottom: 1rem; color: var(--gray-600);">Algo está faltando ou errado nesta seção? Conte-nos!</p>
-                <div class="feedback-form">
-                    <textarea placeholder="Sua observação aqui..." class="section-feedback"></textarea>
-                    <button class="btn btn-primary" onclick="sendSectionFeedback('formularios')">Enviar Feedback</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: FAQ -->
-    <div id="faq" class="tab-content">
-        <h2 class="section-title">❓ Perguntas Frequentes</h2>
-
-        <div class="accordion-item">
-            <div class="accordion-header active" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Quanto tempo leva para obter resposta?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body active">
-                <p>Geralmente, a análise leva entre 3 a 5 dias úteis após a submissão. Você receberá atualizações por email.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Posso editar meu formulário após envio?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Você não pode editar diretamente. Se o revisor solicitar correções, você receberá um email com instruções de como reenviar o formulário corrigido.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    O que significa o "Score" mostrado no dashboard?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>O score (0-100) é uma avaliação automática baseada em dados da cidade (população, PIB, IDH). <strong>Não é uma aprovação ou rejeição</strong> - é apenas um indicador de viabilidade econômica que auxilia o revisor.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Meu projeto foi rejeitado. Posso reenviar?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Se rejeitado, você pode criar um novo projeto no sistema. Use o mesmo email, e um novo protocolo será gerado. O sistema rastreará os projetos anteriores.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Como acompanho meu projeto?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Você pode acompanhar usando o número de protocolo gerado após submissão. Acesse a página "Meu Protocolo" e insira o número. Você verá o status em tempo real.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Quais tipos de projeto são aceitos?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p><strong>Tipos de Entrada:</strong></p>
-                <ul>
-                    <li><strong>Lançamento:</strong> Novo empreendimento imobiliário</li>
-                    <li><strong>Remanescente:</strong> Projeto residual/complementar</li>
-                    <li><strong>Área Bruta:</strong> Venda de área sem benfeitoria</li>
-                    <li><strong>Incorporador/Terreno:</strong> Empreendimento de renovação/desenvolvimento</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    O que aconteça na Fase 3?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Se seu projeto for aprovado na Fase 1, você receberá um link para preencher formulário complementar com dados técnicos e financeiros. Isto é obrigatório para projetos tipo "Área Bruta" e "Incorporador/Terreno", mas opcional para "Lançamento" e "Remanescente".</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Como recebo a proposta?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Após completar o formulário complementar, a proposta será gerada pelo revisor. Você receberá um email com um link único para visualizar a proposta. Este link é pessoal e único para seu projeto.</p>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span class="accordion-title">
-                    <span>❓</span>
-                    Preciso fazer login para acompanhar meu projeto?
-                </span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-body">
-                <p>Não. Para clientes, não é necessário login. Você acompanha usando:<br>
-                • <strong>Protocolo + Email</strong> para Fase 1<br>
-                • <strong>Link de acesso (access_token)</strong> para Fase 3<br>
-                • <strong>Link de proposta (proposal_token)</strong> para Fase 4
+        <!-- TAB 1: INÍCIO -->
+        <div id="inicio" class="tab-content active">
+            <div class="section">
+                <h2>🎯 O Que é o Nexiflow Approvals?</h2>
+                <p class="content-text">
+                    Pense no Nexiflow como um <span class="highlight">"gerente de projetos imobiliários"</span> que:
                 </p>
-            </div>
-        </div>
-
-        <!-- FEEDBACK BOX -->
-        <div class="feedback-box">
-            <div class="feedback-box-title" onclick="toggleFeedback(this)">
-                📝 Observações & Correções
-                <span style="margin-left: auto;">▼</span>
-            </div>
-            <div class="feedback-box-content">
-                <p style="margin-bottom: 1rem; color: var(--gray-600);">Algo está faltando ou errado nesta seção? Conte-nos!</p>
-                <div class="feedback-form">
-                    <textarea placeholder="Sua observação aqui..." class="section-feedback"></textarea>
-                    <button class="btn btn-primary" onclick="sendSectionFeedback('faq')">Enviar Feedback</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB: FEEDBACKS RECEBIDOS -->
-    <div id="feedback" class="tab-content">
-        <h2 class="section-title">💬 Feedbacks Recebidos</h2>
-
-        <div class="card success">
-            <div class="card-title">✅ Relatório de Problemas Reportados</div>
-            <p>Veja os feedbacks enviados pela comunidade. Status e resoluções são atualizados regularmente.</p>
-        </div>
-
-        <div id="feedbackList">
-            <p style="text-align: center; color: var(--gray-500); padding: 2rem;">
-                📊 Nenhum feedback recebido ainda. Seja o primeiro a reportar!
-            </p>
-        </div>
-    </div>
-
-    <!-- TAB: CHANGELOG -->
-    <div id="changelog" class="tab-content">
-        <h2 class="section-title">📜 Changelog - Histórico de Atualizações</h2>
-
-        <div class="card primary" style="border-left-color: var(--primary);">
-            <div class="card-title">🔄 Atualizações da Documentação</div>
-            <p>Todas as alterações, correções e melhorias feitas neste documento.</p>
-        </div>
-
-        <div class="changelog-item">
-            <div class="changelog-date">17/03/2026</div>
-            <div class="changelog-version">✨ Versão 2.1.0</div>
-            <ul>
-                <li>✅ Adicionado formulário flutuante de feedback</li>
-                <li>✅ Adicionado timestamp de atualização no header</li>
-                <li>✅ Adicionado contador de feedbacks recebidos</li>
-                <li>✅ Nova aba "Feedbacks" com lista de problemas reportados</li>
-                <li>✅ Nova aba "Changelog" com histórico de atualizações</li>
-                <li>✅ Adicionados campos de feedback em cada seção principal</li>
-                <li>📝 Melhorias gerais na clareza e exemplos</li>
-                <li>🔧 Correções de inconsistências na documentação técnica</li>
-            </ul>
-        </div>
-
-        <div class="changelog-item">
-            <div class="changelog-date">15/03/2026</div>
-            <div class="changelog-version">🐛 Versão 2.0.5</div>
-            <ul>
-                <li>🔧 Corrigido erro na descrição de Tipos de Entrada</li>
-                <li>📝 Melhorada documentação do score automático</li>
-                <li>✅ Adicionados exemplos práticos de API requests</li>
-            </ul>
-        </div>
-
-        <div class="changelog-item">
-            <div class="changelog-date">10/03/2026</div>
-            <div class="changelog-version">🚀 Versão 2.0.0</div>
-            <ul>
-                <li>🎨 Redesign completo da interface</li>
-                <li>📱 Melhorada responsividade em mobile</li>
-                <li>⚙️ Adicionada documentação técnica completa</li>
-                <li>🔐 Documentado sistema de autenticação e segurança</li>
-            </ul>
-        </div>
-
-        <div class="changelog-item">
-            <div class="changelog-date">01/03/2026</div>
-            <div class="changelog-version">📄 Versão 1.0.0</div>
-            <ul>
-                <li>🎉 Lançamento inicial da documentação</li>
-                <li>📋 Guias para Cliente, Usuário e FAQ</li>
-                <li>🔌 Documentação de APIs</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <p>&copy; 2026 Nexiflow Approvals. Todos os direitos reservados.</p>
-    <div class="footer-links">
-        <a href="#" onclick="switchTab('cliente'); return false;">Guia do Cliente</a>
-        <a href="#" onclick="switchTab('usuario'); return false;">Guia do Usuário</a>
-        <a href="#" onclick="switchTab('tecnica'); return false;">Documentação Técnica</a>
-        <a href="https://github.com">GitHub</a>
-        <a href="https://docs.neximob.com.br">Docs</a>
-    </div>
-</footer>
-
-<script>
-    // ===== UTILITY FUNCTIONS =====
-    function getCurrentTime() {
-        const now = new Date();
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const year = now.getFullYear();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        return `${day}/${month}/${year} às ${hours}:${minutes}`;
-    }
-
-    function updateTimestamp() {
-        document.getElementById('updateTime').textContent = getCurrentTime();
-    }
-
-    // ===== TAB MANAGEMENT =====
-    function switchTab(tabName) {
-        // Hide all tabs
-        const tabs = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => tab.classList.remove('active'));
-
-        // Remove active class from all buttons
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Show selected tab and mark button as active
-        document.getElementById(tabName).classList.add('active');
-        event.target.classList.add('active');
-    }
-
-    // ===== ACCORDION MANAGEMENT =====
-    function toggleAccordion(element) {
-        const header = element;
-        const body = header.nextElementSibling;
-        const icon = header.querySelector('.accordion-icon');
-
-        // Close all other accordions
-        document.querySelectorAll('.accordion-header').forEach(h => {
-            if (h !== header) {
-                h.classList.remove('active');
-                h.nextElementSibling.classList.remove('active');
-            }
-        });
-
-        // Toggle current
-        header.classList.toggle('active');
-        body.classList.toggle('active');
-    }
-
-    // ===== FEEDBACK MANAGEMENT =====
-    function toggleFeedback(element) {
-        const content = element.nextElementSibling;
-        content.classList.toggle('active');
-
-        // Rotate arrow
-        const arrow = element.querySelector('span:last-child');
-        if (arrow) {
-            arrow.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-    }
-
-    function sendSectionFeedback(section) {
-        const textarea = event.target.previousElementSibling;
-        const text = textarea.value.trim();
-
-        if (!text) {
-            alert('Por favor, escreva seu feedback antes de enviar!');
-            return;
-        }
-
-        // Get or create feedback list from localStorage
-        let feedbackList = JSON.parse(localStorage.getItem('feedbacks')) || [];
-
-        const feedback = {
-            id: Date.now(),
-            section: section,
-            text: text,
-            date: getCurrentTime(),
-            status: 'aberto'
-        };
-
-        feedbackList.push(feedback);
-        localStorage.setItem('feedbacks', JSON.stringify(feedbackList));
-
-        // Update counter
-        updateFeedbackCount();
-
-        // Clear textarea
-        textarea.value = '';
-
-        alert('✅ Feedback enviado com sucesso! Obrigado pela contribuição.');
-
-        // Refresh feedback list
-        displayFeedbacks();
-    }
-
-    function openFeedbackModal() {
-        document.getElementById('feedbackModal').classList.add('active');
-    }
-
-    function closeFeedbackModal() {
-        document.getElementById('feedbackModal').classList.remove('active');
-    }
-
-    function submitFeedback(event) {
-        event.preventDefault();
-        const text = document.getElementById('feedbackText').value.trim();
-
-        if (!text) {
-            alert('Por favor, escreva seu feedback!');
-            return;
-        }
-
-        // Save to localStorage
-        let feedbackList = JSON.parse(localStorage.getItem('feedbacks')) || [];
-
-        const feedback = {
-            id: Date.now(),
-            section: 'Geral',
-            text: text,
-            date: getCurrentTime(),
-            status: 'aberto'
-        };
-
-        feedbackList.push(feedback);
-        localStorage.setItem('feedbacks', JSON.stringify(feedbackList));
-
-        // Clear and close
-        document.getElementById('feedbackText').value = '';
-        closeFeedbackModal();
-
-        alert('✅ Feedback enviado com sucesso! Obrigado.');
-
-        // Update display
-        updateFeedbackCount();
-        displayFeedbacks();
-    }
-
-    function updateFeedbackCount() {
-        const feedbackList = JSON.parse(localStorage.getItem('feedbacks')) || [];
-        const count = feedbackList.length;
-
-        document.getElementById('feedbackCount').textContent = count;
-        document.getElementById('badge-count').textContent = count;
-    }
-
-    function displayFeedbacks() {
-        const feedbackList = JSON.parse(localStorage.getItem('feedbacks')) || [];
-        const container = document.getElementById('feedbackList');
-
-        if (feedbackList.length === 0) {
-            container.innerHTML = '<p style="text-align: center; color: var(--gray-500); padding: 2rem;">📊 Nenhum feedback recebido ainda. Seja o primeiro a reportar!</p>';
-            return;
-        }
-
-        let html = '';
-        feedbackList.forEach(fb => {
-            const statusClass = fb.status === 'resolvido' ? 'status-resolved' :
-                               fb.status === 'em análise' ? 'status-in-progress' : 'status-open';
-
-            html += `
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
-                        <div>
-                            <span class="badge badge-primary">${fb.section}</span>
-                            <span class="${statusClass}" style="margin-left: 0.5rem;">${fb.status}</span>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>1. Recebe as informações do seu projeto</span>
+                            <span class="accordion-toggle">▼</span>
                         </div>
-                        <span style="font-size: 0.85rem; color: var(--gray-500);">${fb.date}</span>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                O sistema coleta dados através de um formulário online estruturado em categorias.
+                                Tudo é validado em tempo real para garantir que as informações sejam completas e precisas.
+                            </p>
+                        </div>
                     </div>
-                    <p style="color: var(--gray-700);">${fb.text}</p>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>2. Avalia se o projeto é viável</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                Integração com dados do IBGE (população, PIB) combinados com suas respostas
+                                para gerar um score de viabilidade automático. É como um relatório preliminar objetiva.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>3. Aprova ou rejeita o projeto</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                Um especialista revisor analisa cada projeto e pode aprovar, rejeitar ou solicitar correções.
+                                Cada ação é registrada no histórico para auditoria completa.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>4. Guia você através das próximas etapas</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                Dependendo do tipo de projeto, o sistema gerencia fases adicionais: formulários complementares,
+                                análises de mercado e propostas customizadas.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            `;
-        });
 
-        container.innerHTML = html;
-    }
+                <h3 style="margin-top: 40px;">Por Que Nexiflow?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>O que faz</th>
+                            <th>Benefício</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scoring Automático</strong></td>
+                            <td>Calcula viabilidade via IBGE</td>
+                            <td>Análise rápida e objetiva</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Protocolo Único</strong></td>
+                            <td>Cada projeto tem um número</td>
+                            <td>Fácil rastreamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acesso por Token</strong></td>
+                            <td>Link pessoal + seguro</td>
+                            <td>Sem necessidade de login</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Correções Automáticas</strong></td>
+                            <td>Sistema navega para erro</td>
+                            <td>Não precisa clicar tudo de novo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notificações por Email</strong></td>
+                            <td>Sempre atualizado</td>
+                            <td>Sem surpresas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proposta Customizada</strong></td>
+                            <td>Análise específica do projeto</td>
+                            <td>Não genérica</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-    // ===== INITIALIZATION =====
-    document.addEventListener('DOMContentLoaded', function() {
-        updateTimestamp();
-        updateFeedbackCount();
-        displayFeedbacks();
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
 
-        // Close modal when clicking outside
-        document.getElementById('feedbackModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeFeedbackModal();
+        <!-- TAB 2: CLIENTE -->
+        <div id="cliente" class="tab-content">
+            <div class="section">
+                <h2>👨‍💼 Para o Seu Cliente</h2>
+                <p class="content-text">Resumo executivo: como o sistema de aprovação funciona em 4 fases simples.</p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>⏳ FASE 1: ENVIO INICIAL</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>O que você faz:</strong> Preenche um formulário com detalhes do projeto
+                            </p>
+                            <ul class="list-styled">
+                                <li>Sistema gera um número único de protocolo (rastreável)</li>
+                                <li>Email de confirmação com número do protocolo</li>
+                                <li>Score automático calculado</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>🔍 FASE 2: ANÁLISE DO REVISOR</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>O que acontece:</strong> Um especialista analisa seu projeto
+                            </p>
+                            <div class="grid-2">
+                                <div class="card">
+                                    <h4>✅ APROVAR</h4>
+                                    <p>"Seu projeto é viável! Vamos adiante."</p>
+                                </div>
+                                <div class="card">
+                                    <h4>❌ REJEITAR</h4>
+                                    <p>"Projeto não se enquadra nos critérios."</p>
+                                </div>
+                                <div class="card">
+                                    <h4>🔄 CORREÇÕES</h4>
+                                    <p>"Precisamos de mais informações em alguns campos."</p>
+                                </div>
+                                <div class="card">
+                                    <h4>💬 COMENTAR</h4>
+                                    <p>"Observações e sugestões do revisor."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>📋 FASE 3: PRÓXIMAS ETAPAS (Se Aprovado)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>Depende do tipo do projeto:</strong>
+                            </p>
+                            <ul class="list-styled">
+                                <li><span class="badge badge-success">LANÇAMENTO/REMANESCENTE</span> → Vai direto para FASE 4 (Proposta)</li>
+                                <li><span class="badge badge-info">ANÁLISE DE ÁREAS</span> → Formulário complementar com mais perguntas</li>
+                            </ul>
+                            <p class="content-text" style="margin-top: 15px;">
+                                Você acessa via link único enviado por email. Não precisa de senha!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>💰 FASE 4: PROPOSTA CUSTOMIZADA</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>O que você recebe:</strong>
+                            </p>
+                            <ul class="list-styled">
+                                <li>✓ Análise completa do mercado</li>
+                                <li>✓ Estimativa de viabilidade econômica</li>
+                                <li>✓ Recomendações de posicionamento</li>
+                                <li>✓ Próximos passos sugeridos</li>
+                                <li>✓ Documento PDF pronto para compartilhar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">📊 Exemplo Real: O Projeto do João</h3>
+                <p class="content-text">
+                    João quer <span class="highlight">lançar um novo loteamento em São Paulo</span>. Aqui está sua jornada:
+                </p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Passo 1: João Preenche o Formulário</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text"><strong>Tipo:</strong> Lançamento | <strong>Subtipo:</strong> Loteamento</p>
+                            <p class="content-text">9 Categorias de campos:</p>
+                            <ul class="list-styled">
+                                <li>📌 Informações Gerais (Nome, Email)</li>
+                                <li>📍 Localização (Cidade, CEP)</li>
+                                <li>📊 Dados Demográficos (População, PIB)</li>
+                                <li>🏗️ Características do Empreendimento</li>
+                                <li>💹 Dados de Mercado</li>
+                                <li>🏢 Construtora/Incorporadora</li>
+                                <li>🤝 Negociação e Parceria</li>
+                                <li>📄 Documentos</li>
+                                <li>💬 Observações</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Passo 2: Sistema Gera Protocolo</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>Protocolo gerado:</strong> <span class="badge badge-info">NXM-2026-ABC12345</span>
+                            </p>
+                            <p class="content-text">
+                                Email enviado com confirmação de recebimento e número único para rastreamento.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Passo 3: Revisor Analisa</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                O revisor pode aprovar, rejeitar ou solicitar correções. Cada ação dispara um email para João.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">⚡ Rastreamento: Como Acompanhar Seu Projeto</h3>
+                <p class="content-text">João pode <strong>a qualquer momento</strong>:</p>
+                <ol class="list-styled">
+                    <li>Acessar o site</li>
+                    <li>Clicar em "Rastrear Meu Projeto"</li>
+                    <li>Digitar protocolo ou email</li>
+                    <li>Ver status atual em tempo real</li>
+                </ol>
+
+                <div class="flow-diagram">
+⏳ Em análise
+  ↓
+✅ Aprovado  /  ❌ Rejeitado  /  🔄 Aguardando correções
+  ↓
+📋 Preenchendo dados complementares (se necessário)
+  ↓
+💰 Proposta pronta para download
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: USUÁRIO -->
+        <div id="usuario" class="tab-content">
+            <div class="section">
+                <h2>👤 Como Usar o Sistema (Passo a Passo)</h2>
+                <p class="content-text">Guia operacional: instruções detalhadas para cada ação.</p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>1️⃣ Enviar um Novo Projeto</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <h4 style="color: #0f172a; margin-bottom: 10px;">Passo 1: Acessar a Plataforma</h4>
+                            <ul class="list-styled">
+                                <li>Abra: <code style="background: #f3f4f6; padding: 2px 6px; border-radius: 3px;">http://localhost:8081</code></li>
+                                <li>Clique em <strong>"Novo Projeto"</strong> ou <strong>"Enviar Análise"</strong></li>
+                            </ul>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Passo 2: Escolher o Tipo de Projeto</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Quando Usar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Análise de Áreas</strong></td>
+                                        <td>Terreno bruto → viável para construir?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lançamento</strong></td>
+                                        <td>LANÇANDO novo imóvel/condomínio</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Remanescente</strong></td>
+                                        <td>Projeto antigo com unidades disponíveis</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Incorporador</strong></td>
+                                        <td>Incorporador com terreno disponível</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Passo 3: Preencher o Formulário</h4>
+                            <p class="content-text">
+                                O formulário é dividido em <span class="highlight">categorias (abas)</span>.
+                            </p>
+                            <ul class="list-styled">
+                                <li>⭐ Campos com asterisco (*) são obrigatórios</li>
+                                <li>💡 Campos com "?" têm ajuda ao passar mouse</li>
+                                <li>🔴 Se ficar vermelho, revise antes de continuar</li>
+                                <li>➡️ Clique "Próximo" para avançar</li>
+                                <li>⬅️ Clique "Anterior" para voltar</li>
+                            </ul>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Passo 4: Dados do Responsável</h4>
+                            <p class="content-text">Na primeira tela, preencha:</p>
+                            <ul class="list-styled">
+                                <li>Seu Nome Completo</li>
+                                <li>Seu Email (aparece em todos emails)</li>
+                                <li>Seu Telefone</li>
+                            </ul>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Passo 5: Submeter</h4>
+                            <p class="content-text">Clique em <strong>"Enviar Projeto"</strong> no final. O sistema vai:</p>
+                            <ol class="list-styled">
+                                <li>Validar todos os campos</li>
+                                <li>Calcular o score</li>
+                                <li>Gerar protocolo</li>
+                                <li>Enviar email de confirmação</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>2️⃣ Rastrear Seu Projeto</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <h4 style="color: #0f172a; margin-bottom: 10px;">Opção A: Via Protocolo</h4>
+                            <ol class="list-styled">
+                                <li>Acesse a plataforma</li>
+                                <li>Clique em <strong>"Rastrear Projeto"</strong></li>
+                                <li>Copie/cole seu protocolo: <code style="background: #f3f4f6; padding: 2px 6px;">NXM-2026-ABC12345</code></li>
+                                <li>Clique em <strong>"Buscar"</strong></li>
+                            </ol>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Opção B: Via Email</h4>
+                            <ol class="list-styled">
+                                <li>Abra o email que recebeu</li>
+                                <li>Clique no link de rastreamento</li>
+                                <li>Você é levado direto ao seu projeto</li>
+                            </ol>
+
+                            <p class="content-text" style="margin-top: 15px;">
+                                <strong>Você verá:</strong> Status atual, data de envio, timeline de eventos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>3️⃣ Se Seu Projeto Precisa de Correções</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">Se o revisor respondeu <span class="badge badge-warning">"Aguardando Correções"</span>:</p>
+                            <ol class="list-styled">
+                                <li><strong>Email recebido</strong> com link de acesso</li>
+                                <li><strong>Clique no link</strong> → volta ao formulário</li>
+                                <li><strong>Campos vermelhos</strong> = o que precisa corrigir</li>
+                                <li><strong>Sistema navega automaticamente</strong> para o 1º erro</li>
+                                <li><strong>Corrija</strong> os campos indicados</li>
+                                <li><strong>Clique "Reenviar"</strong></li>
+                            </ol>
+                            <div class="card" style="margin-top: 15px; background: #f0fdf4; border-left: 4px solid #10b981;">
+                                <p style="color: #065f46;">
+                                    ✅ <strong>O sistema apaga a rejeição anterior e trata como novo envio.</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>4️⃣ Se Seu Projeto Foi Aprovado</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">Você receberá email dizendo: <span class="badge badge-success">"Seu projeto foi aprovado!"</span></p>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">SE é Lançamento/Remanescente:</h4>
+                            <ul class="list-styled">
+                                <li>Aguarde a proposta estar pronta</li>
+                                <li>Email com link para baixar proposta PDF</li>
+                            </ul>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">SE é Análise de Áreas:</h4>
+                            <ul class="list-styled">
+                                <li>Email com link para <strong>formulário complementar</strong></li>
+                                <li>Isso é a <strong>FASE 3</strong> (tem mais ~35 perguntas)</li>
+                                <li>Após completar, recebe a proposta</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>5️⃣ Acessar a Proposta</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">Você recebeu email com:</p>
+                            <div class="code-block">
+Assunto: Sua Proposta Está Pronta!
+
+Link de acesso:
+http://localhost:8081/proposta/123abc?token=xyz789
+                            </div>
+                            <p class="content-text"><strong>Clique no link:</strong></p>
+                            <ul class="list-styled">
+                                <li>✓ Sem necessidade de login</li>
+                                <li>✓ Link é único e seguro</li>
+                                <li>✓ Abre em PDF no navegador</li>
+                                <li>✓ Pode baixar/imprimir</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: TÉCNICA -->
+        <div id="tecnica" class="tab-content">
+            <div class="section">
+                <h2>👨‍💻 Arquitetura e Fluxos Técnicos</h2>
+                <p class="content-text">Documentação técnica: fluxos, banco de dados, integrações e modelos de dados.</p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>1. Modelo de Dados</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text"><strong>Tabela Principal: PROJECTS</strong></p>
+                            <ul class="list-styled">
+                                <li><strong>Informações Básicas:</strong> user_name, user_email, user_phone</li>
+                                <li><strong>Localização:</strong> uf, city</li>
+                                <li><strong>Tipo:</strong> entry_type (lancamento/remanescente/area_bruta), study_type</li>
+                                <li><strong>Status:</strong> status, current_phase</li>
+                                <li><strong>Respostas:</strong> phase1_answers (JSONB), phase3_answers (JSONB)</li>
+                                <li><strong>Scoring:</strong> internal_score (JSONB)</li>
+                                <li><strong>Rastreamento:</strong> protocol_number, access_token, created_at, updated_at</li>
+                                <li><strong>Revisões:</strong> revision_requested (JSONB)</li>
+                                <li><strong>Proposta:</strong> proposal (JSONB), proposal_token</li>
+                                <li><strong>Soft Delete:</strong> deleted_at</li>
+                            </ul>
+
+                            <p class="content-text" style="margin-top: 15px;"><strong>Tabelas Relacionadas:</strong></p>
+                            <ul class="list-styled">
+                                <li><strong>REVIEW_ACTIONS:</strong> Auditoria de cada ação do revisor</li>
+                                <li><strong>REVIEW_COMMENTS:</strong> Comentários campo por campo</li>
+                                <li><strong>IBGE_CACHE:</strong> Cache de dados IBGE (24h)</li>
+                                <li><strong>USERS:</strong> Admin, reviewer, client (JWT auth)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>2. Fluxo de Status (State Machine)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="flow-diagram">
+┌─────────────────────────────────┐
+│ NOVO PROJETO ENVIADO            │
+│ Status: pendente_analise        │
+│ Phase: 1                        │
+└──────────────┬──────────────────┘
+               │
+┌──────────────▼──────────────────┐
+│ REVISOR ANALISA                 │
+└──┬──────────────┬──┬────────────┘
+   │              │  │
+┌──▼──┐      ┌────▼─▼───┐
+│APROV│      │  REJEITA │
+│ADOR │      └──────────┘
+└─────┤
+      │
+┌─────▼──────────────────────────┐
+│ TIPO DEFINE PRÓXIMO PASSO       │
+├────────────────────────────────┤
+│ SE Lançamento/Remanescente:    │
+│ → FASE 4 (Proposta)            │
+│   Status: aguardando_proposta  │
+│                                │
+│ SE Análise de Áreas:          │
+│ → FASE 3 (Complementar)        │
+│   Status: fase_complementar    │
+│   Phase: 3                     │
+└────────────────────┬───────────┘
+                     │
+           ┌─────────▼────────┐
+           │ PROPOSTA ENVIADA │
+           │ Status: final    │
+           └──────────────────┘
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>3. Fluxo de Revisão</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text"><strong>O revisor tem 4 ações disponíveis:</strong></p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ação</th>
+                                        <th>Resultado</th>
+                                        <th>Email Disparado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>APROVAR</strong></td>
+                                        <td>Status → fase_complementar (se areas) ou aguardando_proposta</td>
+                                        <td>Confirmação com próximo link</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>REJEITAR</strong></td>
+                                        <td>Status → reprovado (FINAL), motivo salvo</td>
+                                        <td>Motivo da rejeição</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>PEDIR CORREÇÕES</strong></td>
+                                        <td>Status → aguardando_correcao, campos marcados</td>
+                                        <td>Link para corrigir com campos em destaque</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>COMENTAR</strong></td>
+                                        <td>Salvo em review_comments, visível no histórico</td>
+                                        <td>Não dispara email automático</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>4. Segurança: Tokens e Acesso</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Tipo</th>
+                                        <th>Uso</th>
+                                        <th>Expira?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>access_token</strong></td>
+                                        <td>UUID aleatório</td>
+                                        <td>Phase 3 + Proposta</td>
+                                        <td>Nunca (admin revoga)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>proposal_token</strong></td>
+                                        <td>UUID aleatório</td>
+                                        <td>Apenas Proposta</td>
+                                        <td>Nunca</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>auth_token</strong></td>
+                                        <td>JWT com expiração</td>
+                                        <td>Admin/Reviewer APIs</td>
+                                        <td>Sim (24h)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p class="content-text" style="margin-top: 15px;"><strong>Regras de Acesso:</strong></p>
+                            <ul class="list-styled">
+                                <li>Cliente vê APENAS seu projeto (via token/email)</li>
+                                <li>Reviewer vê TODOS (autenticado)</li>
+                                <li>Admin vê tudo + pode deletar</li>
+                                <li>Ninguém vê score sem ?reviewer=true</li>
+                                <li>Proposta = APENAS email/token, nunca login</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>5. Eventos de Email (SMTP)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Evento</th>
+                                        <th>Quando</th>
+                                        <th>Assunto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Project Submitted</strong></td>
+                                        <td>Cliente envia Phase 1</td>
+                                        <td>"Seu projeto foi recebido"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Project Approved</strong></td>
+                                        <td>Revisor clica APROVAR</td>
+                                        <td>"Seu projeto foi aprovado"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Project Rejected</strong></td>
+                                        <td>Revisor clica REJEITAR</td>
+                                        <td>"Projeto rejeitado"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Revision Requested</strong></td>
+                                        <td>Revisor clica PEDIR CORR.</td>
+                                        <td>"Seu projeto precisa ajustes"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Resubmission Received</strong></td>
+                                        <td>Cliente resubmete após corr</td>
+                                        <td>"Resubmissão recebida"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Proposal Sent</strong></td>
+                                        <td>Admin envia proposta</td>
+                                        <td>"Sua proposta está pronta"</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: FORMULÁRIOS -->
+        <div id="formularios" class="tab-content">
+            <div class="section">
+                <h2>📋 Estrutura dos Formulários</h2>
+                <p class="content-text">Detalhes sobre quantas perguntas, categorias e campos especiais por tipo de projeto.</p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>A. LANÇAMENTO (lancamento)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <span class="badge badge-info">Apenas Phase 1</span>
+                                <span class="badge badge-info">~50 perguntas</span>
+                                <span class="badge badge-info">9 categorias</span>
+                            </p>
+                            <p class="content-text" style="margin-top: 15px;"><strong>Campos especiais:</strong></p>
+                            <ul class="list-styled">
+                                <li>Histórico construtora</li>
+                                <li>Dados de mercado do empreendimento</li>
+                                <li>Status da obra</li>
+                                <li>VGV (Valor Geral de Vendas)</li>
+                                <li>Número de unidades vendidas</li>
+                            </ul>
+                            <p class="content-text" style="margin-top: 15px;"><strong>Próximo passo:</strong> Phase 4 (Proposta direto)</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>B. REMANESCENTE (remanescente)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <span class="badge badge-info">Apenas Phase 1</span>
+                                <span class="badge badge-info">~53 perguntas</span>
+                                <span class="badge badge-info">9 categorias</span>
+                            </p>
+                            <p class="content-text" style="margin-top: 15px;"><strong>Campos especiais (único de remanescente):</strong></p>
+                            <ul class="list-styled">
+                                <li>"Quantas unidades eram no total?"</li>
+                                <li>"Está vendendo quantas por mês?"</li>
+                                <li>"Há quantos meses sem vender?"</li>
+                                <li>"GERIC? Se não, por quê?"</li>
+                                <li>"Por que não está vendendo?" (análise qualitativa)</li>
+                            </ul>
+                            <p class="content-text" style="margin-top: 15px;"><strong>Próximo passo:</strong> Phase 4 (Proposta direto)</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>C. ANÁLISE DE ÁREAS (area_bruta / incorporador_terreno)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <span class="badge badge-success">Phase 1: ~80 perguntas</span>
+                                <span class="badge badge-success">Phase 3: ~35 perguntas</span>
+                                <span class="badge badge-success">12 categorias (Phase 1)</span>
+                            </p>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Phase 1 - Estrutura (12 categorias):</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Perguntas</th>
+                                        <th>Tópico</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>1. Informações Gerais</strong></td>
+                                        <td>3</td>
+                                        <td>Nome, tipo estudo, email</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>2. Localização</strong></td>
+                                        <td>2</td>
+                                        <td>Estado, cidade</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>3. Dados Demográficos</strong></td>
+                                        <td>8</td>
+                                        <td>População, PIB, IDH, atividade</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>4. Características do Terreno</strong></td>
+                                        <td>11</td>
+                                        <td>Tamanho, topografia, zoneamento, etc</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>5. Plano Diretor</strong></td>
+                                        <td>4</td>
+                                        <td>Coef aproveitamento, taxa ocupação</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>6. Infraestrutura</strong></td>
+                                        <td>4</td>
+                                        <td>Água, esgoto, energia, asfalto</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>7. Dados de Mercado</strong></td>
+                                        <td>9</td>
+                                        <td>Preço, oferta/demanda, VGV</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>8. Ambiental</strong></td>
+                                        <td>2</td>
+                                        <td>Passivo, APP</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>9. Negociação</strong></td>
+                                        <td>12</td>
+                                        <td>Permuta, jurídico, comissão</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>10. Multipropriedade</strong></td>
+                                        <td>12</td>
+                                        <td>Só se study_type = Multipropriedade</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>11. Documentos</strong></td>
+                                        <td>6</td>
+                                        <td>KMZ, matrícula, planialtimétrico</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>12. Observações</strong></td>
+                                        <td>1</td>
+                                        <td>Comentários gerais</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4 style="color: #0f172a; margin-bottom: 10px; margin-top: 15px;">Phase 3 - Complementar (depende de study_type):</h4>
+                            <p class="content-text">
+                                Se <span class="highlight">aprovado em Phase 1</span>, o cliente acessa Phase 3 com formulário específico:
+                            </p>
+                            <ul class="list-styled">
+                                <li><strong>INCORPORAÇÃO:</strong> Detalhes área, mercado, projeto aprovado, proprietário</li>
+                                <li><strong>LOTEAMENTO:</strong> MESMOS tópicos + 19 documentos técnicos (licenças, projetos, etc)</li>
+                                <li><strong>MULTIPROPRIEDADE:</strong> Multipropriedade especial (intercambiadora, parcerias)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: FAQ -->
+        <div id="faq" class="tab-content">
+            <div class="section">
+                <h2>❓ Perguntas Frequentes (FAQ)</h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: Como o scoring funciona exatamente?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                O sistema usa <strong>população + PIB per capita do IBGE</strong> + dados que você preenche
+                                (topografia, acessos, infraestrutura, mercado) para gerar uma pontuação de 0-100.
+                                Isso ajuda o revisor a ter uma primeira impressão objetiva do projeto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: Posso editar meu projeto depois de enviar?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                Apenas se o revisor pedir correções. Caso contrário, precisa enviar um <strong>novo projeto</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: Por quanto tempo meu link de acesso funciona?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                O link <strong>nunca expira naturalmente</strong>. Um admin pode revogá-lo manualmente se necessário.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: O revisor vê meus comentários (observações)?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>Sim, tudo é registrado no sistema.</strong> É um diário de bordo do projeto completo,
+                                incluindo todas as observações e comentários adicionados.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: Posso compartilhar meu protocolo com alguém?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                <strong>Sim! Protocolo é público.</strong> Qualquer um pode rastrear o status.
+                                Mas o acesso ao formulário/proposta requer o link enviado por email (seguro com token).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>P: E se o revisor não responder?</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text">
+                                Depende da SLA (Service Level Agreement) do cliente. <strong>O sistema registra tudo</strong>
+                                (data/hora) para auditoria completa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: CHANGELOG -->
+        <div id="changelog" class="tab-content">
+            <div class="section">
+                <h2>📝 Changelog e Histórico</h2>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>v2.1.0 - Documentação Completa (17/03/2026)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text"><span class="badge badge-success">Nova</span> Documentação HTML completa com 7 abas interativas</p>
+                            <ul class="list-styled">
+                                <li>✓ Design minimalista e profissional</li>
+                                <li>✓ Accordions para expandir/retrair seções</li>
+                                <li>✓ Feedback textarea em cada seção</li>
+                                <li>✓ Responsive (mobile-first)</li>
+                                <li>✓ Tabelas para estrutura</li>
+                                <li>✓ Arquivo único pronto para GitHub Pages</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>v2.0.0 - Sistema Completo (01/03/2026)</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="content-text"><span class="badge badge-info">Major</span> Versão completa do sistema Nexiflow</p>
+                            <ul class="list-styled">
+                                <li>✓ 4 tipos de entrada (Lançamento, Remanescente, Áreas, Incorporador)</li>
+                                <li>✓ Phase 1 (Submissão inicial)</li>
+                                <li>✓ Phase 2 (Revisão)</li>
+                                <li>✓ Phase 3 (Complementar para Áreas)</li>
+                                <li>✓ Phase 4 (Proposta)</li>
+                                <li>✓ Scoring automático com IBGE</li>
+                                <li>✓ Protocolo único gerado servidor</li>
+                                <li>✓ Webhooks N8N para emails</li>
+                                <li>✓ Dashboard admin/revisor</li>
+                                <li>✓ Rastreamento público por protocolo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>Checklist: O Que o Sistema Entregou</span>
+                            <span class="accordion-toggle">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Funcionalidade</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Formulários dinâmicos por tipo de projeto</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scoring automático via IBGE</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sistema de revisão (aprovar/rejeitar/corrigir)</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phase 3 complementar para Áreas</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Geração de proposta automática</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Números de protocolo únicos</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tokens de acesso seguros</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rastreamento público por protocolo</td>
+                                        <td><span class="badge badge-success">✓</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <label>💬 Feedback sobre esta seção:</label>
+                    <textarea placeholder="Deixe seus comentários, dúvidas ou sugestões..."></textarea>
+                    <button onclick="saveFeedback(this)">Enviar Feedback</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Nexiflow Approvals v2.1.0</strong></p>
+        <p>Documentação Didática Completa | Atualizado: 17/03/2026 15:50</p>
+        <p>© 2026 Neximob. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function switchTab(event, tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            const accordion = header.closest('.accordion');
+            if (accordion) {
+                accordion.querySelectorAll('.accordion-header').forEach(h => {
+                    if (h !== header) {
+                        h.classList.remove('active');
+                        h.nextElementSibling.classList.remove('active');
+                    }
+                });
             }
-        });
-    });
-</script>
 
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        function saveFeedback(button) {
+            const textarea = button.previousElementSibling;
+            const feedback = textarea.value.trim();
+
+            if (!feedback) {
+                alert('Por favor, escreva algo antes de enviar!');
+                return;
+            }
+
+            const feedbacks = JSON.parse(localStorage.getItem('docFeedbacks') || '[]');
+            feedbacks.push({
+                timestamp: new Date().toISOString(),
+                message: feedback
+            });
+            localStorage.setItem('docFeedbacks', JSON.stringify(feedbacks));
+
+            const originalText = button.textContent;
+            button.textContent = '✓ Enviado com sucesso!';
+            button.style.background = '#10b981';
+            textarea.value = '';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion').forEach(accordion => {
+                const firstHeader = accordion.querySelector('.accordion-header');
+                if (firstHeader) {
+                    firstHeader.classList.add('active');
+                    firstHeader.nextElementSibling.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
